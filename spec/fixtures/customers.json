@@ -1,0 +1,20 @@
+{
+  "response": [
+    {
+      "name": "Revolucionarios S.A.",
+      "taxid": "A123456789",
+      "reference": "ez2014",
+      "contact_name": "Emiliano Zapata",
+      "contact_email": "zapata@test.com",
+      "contact_phone": "555101010",
+      "address_street": "Avenida de la Revolución S/N",
+      "address_city": "Ali",
+      "address_postalcode": "01010",
+      "address_state": "Álava",
+      "address_country": "ES",
+      "status": "PENDING_MANDATE",
+      "id": "cus9878c9231d1d65a80a053684d91fa076"
+    }
+  ],
+  "count": 1
+}

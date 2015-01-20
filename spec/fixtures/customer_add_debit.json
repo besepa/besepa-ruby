@@ -1,0 +1,54 @@
+{
+    "response": {
+        "amount": 1000,
+        "currency": "EUR",
+        "collect_at": "2014-11-15",
+        "sent_at": null,
+        "status": "READY",
+        "description": "desc",
+        "id": "deb3482f4dc98245ec092581e4f507a",
+        "reference": "REF123",
+        "metadata": {
+            "shipping": "UPS"
+        },
+        "customer": {
+            "name": "Pancho Villa SLU",
+            "taxid": "B98123232",
+            "reference": "11232",
+            "contact_name": "Pancho Villa",
+            "contact_email": "pvilla@panchovilla.com",
+            "contact_phone": "123456789",
+            "address_street": "Avda. de la Revolución 12",
+            "address_city": "Madrid",
+            "address_postalcode": "28001",
+            "address_state": "Madrid",
+            "address_country": "ES",
+            "status": "ACTIVE",
+            "id": "cusa1654ec35f3745481bb0a984d8f8"
+        },
+        "mandate": {
+            "description": "mandate",
+            "status": "SIGNED",
+            "signed_at": "2014-11-10T15:59:45.313Z",
+            "mandate_type": "RECURRENT",
+            "reference": "1415635184",
+            "scheme": "CORE",
+            "id": "manff3c2d4ea5ca29085c5c871ef2d2",
+            "url": "https://test.besepa.com/m/manff3c2d4ea5ca29085c5c871ef2d2"
+        },
+        "debtor_bank_account": {
+            "bank_name": "Banco Santander",
+            "bic": "BSCHESMM",
+            "iban": "ES7620770024003102575766",
+            "status": "ACTIVE",
+            "id": "ban9601a13105a897750917b223418c"
+        },
+        "creditor_bank_account": {
+            "bank_name": "Banco Santander",
+            "bic": "BSCHESMM",
+            "iban": "ES7620770024003102575766",
+            "status": "ACTIVE",
+            "id": "ban60e4704d70add1851b676aa69fbc"
+        }
+    }
+}

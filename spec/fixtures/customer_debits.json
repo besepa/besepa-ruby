@@ -1,0 +1,71 @@
+{
+    "response": [
+      {
+        "reference": "1421756142",
+        "amount": 1000,
+        "currency": "EUR",
+        "collect_at": "2015-01-30",
+        "sent_at": null,
+        "status": "READY",
+        "description": "Cargo de 1421756142",
+        "error_code": null,
+        "platform_error_code": null,
+        "metadata": null,
+        "id": "deb4df034666ef17a312b8bbef0bb5d",
+        "customer": {
+          "name": "PATODONALD",
+          "taxid": "PATODONALD",
+          "reference": "PATODONALD",
+          "contact_name": null,
+          "contact_email": null,
+          "contact_phone": null,
+          "address_street": "fsfdsfds",
+          "address_city": "sfsfss",
+          "address_postalcode": "fsf",
+          "address_state": "fsf",
+          "address_country": "ES",
+          "status": "PENDING_MANDATE",
+          "id": "cusf0119f36a683c89e0b041462e23b"
+         },
+         "mandate": {
+           "description": "Firmado fuera de BeSEPA.",
+           "status": "SIGNED",
+           "signed_at": "2015-01-20T12:09:01.000Z",
+           "mandate_type": "RECURRENT",
+           "reference": "man7ca33df2252a2d640175f40f4312",
+           "scheme": "CORE",
+           "signature_type": "checkbox",
+           "id": "man7ca33df225aa2d640175f40f4312",
+           "url": "http://test.besepa.com/m/man7ca33df225aa2d640135f40f4312"
+          },
+          "debtor_bank_account": {
+            "bank_name": "INGDESMMXXX",
+            "bic": "INGDESMMXXX",
+            "iban": "ES7114452100966029467461",
+            "status": "ACTIVE",
+            "id": "ban00fb39d4ab493f34aba3077a3c2e",
+            "customer_id": "cusf0119fe6a683c89e0b041462e23b",
+            "mandate": {
+              "description": "Firmado fuera de BeSEPA.",
+              "status": "SIGNED",
+              "signed_at": "2015-01-20T12:09:01.000Z",
+              "mandate_type": "RECURRENT",
+              "reference": "man7ca33df225aa2d640175f40f4312",
+              "scheme": "CORE",
+              "signature_type": "checkbox",
+              "id": "man7ca3333df5aard640h75f40f4312",
+              "url": "http://test.besepa.com/m/man7ca33df225aa2d640135f40f4312"
+            }
+          },
+          "creditor_bank_account": {
+            "bank_name": "Bankinter",
+            "bic": "BBVAESMMXXX",
+            "iban": "es0820383852396000858559",
+            "status": "PENDING_ACTIVATION",
+            "id": "ban4d38bb61085e2d1e53bff7c1779a",
+            "mandate": null
+          }
+        }
+    ],
+    "count": 1
+}

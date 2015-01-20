@@ -1,0 +1,22 @@
+{
+  "response": [
+    {
+      "id": "banbd5ae7eacf231888edd470ed55144f40",
+      "bank_name": "Banco Santander",
+      "bic": "BSCHESMM",
+      "iban": "ES7620770024003102575766",
+      "status": "PENDING_MANDATE",
+      "customer_id": "cusf11b647d2cc16e503fe8ba36f88c",
+      "mandate": {
+        "status": "PENDING_SIGNATURE",
+        "signed_at": null,
+        "mandate_type": "RECURRENT",
+        "reference": "manf08e870d427040854beca9ad6117",
+        "scheme": "B2B",
+        "id": "manf08d870d327041854beca9ad6117",
+        "url": "http://test.besepa.com/m/manf08e870d427040854beca9ad6117"
+      }
+    }
+  ],
+  "count": 1
+}

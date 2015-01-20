@@ -1,0 +1,17 @@
+{
+  "response": {
+    "name": "Pancho Villa SLU",
+    "taxid": "B98123232",
+    "reference": "11234",
+    "contact_name": null,
+    "contact_email": null,
+    "contact_phone": null,
+    "address_street": null,
+    "address_city": null,
+    "address_postalcode": null,
+    "address_state": null,
+    "address_country": null,
+    "status": "PENDING_MANDATE",
+    "id": "cus32887bc363e05d1b40ba2670b11a24b2"
+  }
+}
