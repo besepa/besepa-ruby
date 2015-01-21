@@ -16,7 +16,6 @@ module Besepa
         @connection ||= Faraday.new ( options[:endpoint] ) do |conn|
           conn.request :json
           conn.response :json, :content_type => /\bjson$/
-          conn.use :instrumentation
           conn.authorization( 'Bearer', options[:api_key])
           conn.adapter :net_http
         end
