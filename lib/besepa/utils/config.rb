@@ -9,7 +9,7 @@ module Besepa
       DEFAULT_API_KEY = nil
 
       # The endpoint that will be used to connect if none is set
-      DEFAULT_ENDPOINT = 'http://app.besepa.com'
+      DEFAULT_ENDPOINT = 'https://sandbox.besepa.com'
 
       # An array of valid keys in the options hash when configuring api objects
       VALID_OPTIONS_KEYS = [
