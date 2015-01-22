@@ -48,6 +48,24 @@ Besepa::Customer.all
 Besepa::Customer.find( customer_id  )
 ```
 
+**Update customer**
+
+```ruby
+c = Besepa::Customer.find( customer_id  )
+c.name = 'New name'
+c.save
+```
+
+**Remove customer**
+
+```ruby
+c = Besepa::Customer.find( customer_id  )
+c.destroy #customer's state is change to 'REMOVED'
+```
+
+Note all subscriptions, upcoming debits and mandates for this customer will be cancelled
+
+
 **Get customer's bank accounts**
 
 ```ruby

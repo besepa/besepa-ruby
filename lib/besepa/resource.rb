@@ -10,8 +10,6 @@ module Besepa
       
      include Besepa::Utils::Connection
      include Besepa::Utils::Request
-
-      protected 
       
       def api_path(filters={})
         "#{klass_name}s"
@@ -20,6 +18,8 @@ module Besepa
       def klass_name
         name.split('::')[-1].downcase
       end
+
+      protected 
       
       def handle_errors(http_status, response)
         error = response['error']
@@ -43,15 +43,6 @@ module Besepa
       process_attributes(attrs)
     end
     
-    def save
-      h = self.to_hash
-      #id and status should not be send back to the server
-      h.delete(:status) 
-      h.delete(:id)
-      attrs = { self.class.klass_name => h }
-      save_or_update(attrs)
-    end
-    
     def to_hash
       values = {}
       self.class::FIELDS.each do |key|
@@ -68,6 +59,10 @@ module Besepa
       to_hash.as_json
     end
     
+    def klass_name
+      self.class.name.split('::')[-1].downcase
+    end
+    
     protected 
     
       def process_attributes(attrs)          
@@ -75,20 +70,10 @@ module Besepa
           self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
         end
       end
-    
-      def save_or_update(attrs)
-        response = nil
-        if id
-          response = put "/#{self.api_path}/#{id}", attrs
-        else
-          response = post "/#{self.api_path}", attrs
-        end
-        process_attributes(response['response'])
-      end
       
-      def api_path(filters={})
-        self.class.api_path
-      end
+      # def api_path(filters={})
+      #   self.class.api_path
+      # end
 
 
   end

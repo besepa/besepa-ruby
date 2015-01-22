@@ -27,7 +27,7 @@ module Besepa
         request(:put, path, params, options)
       end
 
-    private
+    protected
 
       # Perform an HTTP request
       def request(method, path, params, options)
@@ -46,7 +46,11 @@ module Besepa
 
       def handle_response(response)
         body = response.body
-        body['error'] ? handle_errors(response.status, body) : body
+        if response.status >= 400 || body['error'] 
+          handle_errors(response.status, body)
+        else
+          body
+        end
       end
       
     end

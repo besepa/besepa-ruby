@@ -1,7 +1,3 @@
-require 'besepa/utils/request'
-require 'besepa/utils/connection'
-require 'besepa/utils/config'
-
 module Besepa
     
   module ApiCalls

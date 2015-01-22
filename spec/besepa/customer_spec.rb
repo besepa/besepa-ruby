@@ -32,6 +32,40 @@ describe Besepa::Customer do
     
   end
   
+  describe '.save' do
+
+    before do
+      stub_get('/customers/cus12345').to_return(body: fixture('customer.json'), headers: {content_type: 'application/json; charset=utf-8'})
+      stub_put('/customers/cus12345').to_return(body: fixture('customer.json'), headers: {content_type: 'application/json; charset=utf-8'})
+    end
+    
+    it 'returns a a customer' do
+      customer = Besepa::Customer.find('cus12345')
+      customer.name = customer.name.reverse
+      customer = customer.save
+      expect(customer).to be_an Besepa::Customer
+    end
+    
+  end
+  
+  describe '.destroy' do
+
+    before do
+      stub_get('/customers/cus12345').to_return(body: fixture('customer.json'), headers: {content_type: 'application/json; charset=utf-8'})
+      stub_delete('/customers/cus12345').to_return(body: fixture('customer_removed.json'), headers: {content_type: 'application/json; charset=utf-8'})
+    end
+    
+    it 'returns a a customer' do
+      customer = Besepa::Customer.find('cus12345')
+      customer.name = customer.name.reverse
+      customer = customer.destroy
+      expect(customer).to be_an Besepa::Customer
+      expect(customer.status).to eq('REMOVED')
+    end
+    
+  end
+  
+  
   describe "getting customer debits" do
   
     before do
