@@ -26,23 +26,6 @@ module Besepa
       values
     end
     
-    def charge(amount, date)
-      values = '{
-        "debit": {
-          "reference": "xxxxxx",
-          "description": "xxxxxxx",
-          "collect_at": "xxxxxxx",
-          "amount": "xxxxxxx",
-          "mandate_id": "xxxxxxx",
-          "creditor_bank_account_id": "xxxxxxx",
-          "metadata": {
-            "shipping": "UPS"
-          }
-        }
-      }'
-      "/customers/#{self.customer_id}/bank_accounts"
-    end
-    
     protected 
     
       def self.api_path(filters={})
