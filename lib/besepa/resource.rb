@@ -19,8 +19,6 @@ module Besepa
         name.split('::')[-1].downcase
       end
 
-      protected 
-      
       def handle_errors(http_status, response)
         error = response['error']
         desc = response['error_description']
@@ -64,6 +62,10 @@ module Besepa
     end
     
     protected 
+    
+      def handle_errors(http_status, response)
+        Module.const_get(self.class.name).handle_errors(http_status, response)
+      end
     
       def process_attributes(attrs)          
         self.class::FIELDS.each do |key|
