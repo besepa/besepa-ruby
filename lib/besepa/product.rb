@@ -4,6 +4,8 @@ module Besepa
         
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Create
+    include Besepa::ApiCalls::Update
+    include Besepa::ApiCalls::Destroy
         
     FIELDS = [:id, :name, :amount, :currency, :reference,
               :recurrent, :max_charges, :charge_on, :periodicity,
