@@ -4,6 +4,7 @@ module Besepa
     
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Create
+    include Besepa::ApiCalls::Destroy
             
     FIELDS = [:id, :iban, :bic, :bank_name, :status, :customer_id]  
     
