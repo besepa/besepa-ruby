@@ -6,7 +6,7 @@ module Besepa
       
       def destroy(filters={})
         response = delete "/#{self.class.api_path(filters)}/#{id}"
-        process_attributes(response['response'])
+        process_attributes(response['response']) if response['response']
         self
       end
       
