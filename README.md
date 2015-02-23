@@ -116,7 +116,7 @@ Metadata can be a hash that we will store associated to this debit. creditor_acc
 
 ## Supported Ruby Versions
 
-Right now, this gem has been testing with Ruby 2 only. More coming.
+Right now, this gem has been tested with Ruby 2 only. More coming.
 
 ## Contributing
 
