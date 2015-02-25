@@ -30,11 +30,19 @@ module Besepa
     protected 
     
       def self.api_path(filters={})
-        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
+        if filters[:customer_id]
+          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
+        else
+          "/bank_accounts"
+        end
       end
 
       def api_path(filters={})
-        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
+        if filters[:customer_id]
+          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts/#{CGI.escape(id)}"
+        else
+          "/bank_accounts/#{CGI.escape(id)}"
+        end
       end
     
       def process_attributes(attrs)
