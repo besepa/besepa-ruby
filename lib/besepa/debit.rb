@@ -18,11 +18,19 @@ module Besepa
     protected 
     
       def self.api_path(filters={})
-        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits"
+        if filters[:customer_id]
+          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits"
+        else
+          "#{Group.api_path}/#{CGI.escape(filters[:group_id])}/debits"
+        end
       end
 
       def api_path(filters={})
+        if filters[:customer_id]
         "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits/#{CGI.escape(id)}"
+        else
+          "#{Group.api_path}/#{CGI.escape(filters[:group_id])}/debits/#{CGI.escape(id)}"
+        end
       end
 
   end
