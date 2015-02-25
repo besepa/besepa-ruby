@@ -17,6 +17,13 @@ module Besepa
     def self.klass_name
       "bank_account"
     end
+
+    def set_as_default
+      puts "/#{api_path}/set_as_default"
+      response = put "/#{api_path}/set_as_default"
+      process_attributes(response['response'])
+      self
+    end
     
     def to_hash
       values = {}
