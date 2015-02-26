@@ -3,9 +3,10 @@ module Besepa
   class Subscription < Besepa::Resource
     
     include Besepa::ApiCalls::List
-    
+    include Besepa::ApiCalls::Create
+    include Besepa::ApiCalls::Destroy
         
-    FIELDS = [:id, :reference, :status]
+    FIELDS = [:id, :reference, :status, :metadata]
     
     FIELDS.each do |f|
       attr_accessor f
