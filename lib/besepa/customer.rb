@@ -28,8 +28,11 @@ module Besepa
       Subscription.all( {:customer_id => id} )
     end
 
-    def add_bank_account(iban, bic, bank_name=nil)
+    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false)
       params = {:iban => iban, :bic => bic }
+      params[:mandate] = {scheme: scheme, used: used}
+      params[:mandate][:signed_at] = mandate_signature_date if mandate_signature_date
+      params[:mandate][:reference] = mandate_ref if mandate_ref
       params[:bank_name] = bank_name if bank_name
       BankAccount.create( params, {:customer_id => id} )
     end
