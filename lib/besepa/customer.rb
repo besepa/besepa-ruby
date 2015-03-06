@@ -27,12 +27,20 @@ module Besepa
     def subscriptions
       Subscription.all( {:customer_id => id} )
     end
+            
+    def add_subscription(starts_at, product_code, bank_account_code, setup_fee=0)
+      params = {:starts_at => starts_at, :product_id => product_code, :bank_account_id => bank_account_code}
+      params[:setup_fee] = setup_fee if setup_fee
+      Subscription.create( params, {:customer_id => id} )
+    end
 
     def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false)
       params = {:iban => iban, :bic => bic }
-      params[:mandate] = {scheme: scheme, used: used}
-      params[:mandate][:signed_at] = mandate_signature_date if mandate_signature_date
-      params[:mandate][:reference] = mandate_ref if mandate_ref
+      if mandate_signature_date
+        params[:mandate] = {scheme: scheme, used: used}
+        params[:mandate][:signed_at] = mandate_signature_date if mandate_signature_date
+        params[:mandate][:reference] = mandate_ref if mandate_ref
+      end
       params[:bank_name] = bank_name if bank_name
       BankAccount.create( params, {:customer_id => id} )
     end
