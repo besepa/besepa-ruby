@@ -13,7 +13,19 @@ module Besepa
     
     FIELDS.each do |f|
       attr_accessor f
-    end    
+    end
+
+    attr_accessor :debtor_bank_account, :creditor_bank_account
+
+    def to_hash
+      values = {}
+      self.class::FIELDS.each do |key|
+        values[key] = self.send("#{key.to_s}")
+      end
+      values[:debtor_bank_account] = debtor_bank_account.to_hash if debtor_bank_account
+      values[:creditor_bank_account] = creditor_bank_account.to_hash if creditor_bank_account
+      values
+    end
 
     protected 
     
@@ -33,5 +45,13 @@ module Besepa
         end
       end
 
+      def process_attributes(attrs)
+        self.class::FIELDS.each do |key|
+          self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
+        end
+        self.debtor_bank_account = Besepa::BankAccount.new(attrs['debtor_bank_account']) if attrs['debtor_bank_account']
+        self.creditor_bank_account = Besepa::BankAccount.new(attrs['creditor_bank_account']) if attrs['creditor_bank_account']
+        self
+      end
   end
 end
