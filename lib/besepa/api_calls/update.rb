@@ -9,6 +9,8 @@ module Besepa
         #id and status should not be send back to the server
         h.delete(:status) 
         h.delete(:id)
+        #remove all nil values. Not updated.
+        h.delete_if {|key, value| value.nil? }
         payload = {}
         payload[self.class.klass_name] = h
         response = put "/#{self.class.api_path(filters)}/#{id}", payload
