@@ -29,7 +29,7 @@ module Besepa
     end
             
     def add_subscription(starts_at, product_code, bank_account_code, setup_fee=0)
-      params = {:starts_at => starts_at, :product_id => product_code, :bank_account_id => bank_account_code}
+      params = {:starts_at => starts_at, :product_id => product_code, :debtor_bank_account_id => bank_account_code}
       params[:setup_fee] = setup_fee if setup_fee
       Subscription.create( params, {:customer_id => id} )
     end
