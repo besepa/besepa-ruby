@@ -13,5 +13,15 @@ module Besepa
       attr_accessor f
     end    
 
+    protected
+    
+      def self.api_path(filters={})
+        if filters[:customer_id]
+          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/groups"
+        else
+          "/groups"
+        end
+      end
+      
   end
 end
