@@ -19,7 +19,6 @@ module Besepa
     end
 
     def set_as_default
-      puts "/#{api_path}/set_as_default"
       response = put "/#{api_path}/set_as_default"
       process_attributes(response['response'])
       self
@@ -37,19 +36,11 @@ module Besepa
     protected 
     
       def self.api_path(filters={})
-        if filters[:customer_id]
-          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
-        else
-          "/bank_accounts"
-        end
+        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
       end
 
       def api_path(filters={})
-        if filters[:customer_id]
-          "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts/#{CGI.escape(id)}"
-        else
-          "/bank_accounts/#{CGI.escape(id)}"
-        end
+        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts/#{CGI.escape(id)}"
       end
     
       def process_attributes(attrs)
