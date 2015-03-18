@@ -48,6 +48,7 @@ module Besepa
           self.send("#{key.to_s}=", attrs[key.to_s])
         end
         self.mandate = Besepa::Mandate.new(attrs['mandate']) if attrs['mandate']
+        process_activities(attrs)
         self
       end
 

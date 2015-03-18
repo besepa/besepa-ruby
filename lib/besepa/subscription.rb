@@ -40,6 +40,7 @@ module Besepa
       self.debtor_bank_account = Besepa::BankAccount.new(attrs['debtor_bank_account']) if attrs['debtor_bank_account']
       self.product = Besepa::Product.new(attrs['product']) if attrs['product']
       self.customer = Besepa::Customer.new(attrs['customer']) if attrs['customer']
+      process_activities(attrs)
       self
     end
 

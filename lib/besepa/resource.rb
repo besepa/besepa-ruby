@@ -37,6 +37,8 @@ module Besepa
     include Besepa::Utils::Connection
     include Besepa::Utils::Request
 
+    attr_accessor :activities
+    
     def initialize(attrs={})
       process_attributes(attrs)
     end
@@ -70,6 +72,16 @@ module Besepa
       def process_attributes(attrs)          
         self.class::FIELDS.each do |key|
           self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
+        end
+        process_activities(attrs)
+      end
+      
+      def process_activities(attrs)
+        if attrs['activities']
+          self.activities = Array.new
+          attrs['activities'].each do |a|
+            self.activities << Besepa::Activity.new(a) 
+          end
         end
       end
       
