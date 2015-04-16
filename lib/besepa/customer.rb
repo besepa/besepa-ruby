@@ -93,14 +93,19 @@ module Besepa
     # @param mandate_signature_date Date in which this mandate was signed if already signed (Format: YYYY-MM-DD) 
     # @param mandate_ref Mandate's reference. If none, Besepa will create one.
     # @param used Says if this mandate has already been used or not.
+    # @param signature_type Signature to be used: checkbox|sms|biometric
+    # @param phone_number Phone number where the signature SMS will be sent in case signature_type==sms is used.
     #
     # @return new created Besepa::BankAccount
-    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false)
+    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false, signature_type='checkbox', phone_number=nil)
       params = {:iban => iban, :bic => bic }
+      params[:mandate] = {scheme: scheme, used: used}
       if mandate_signature_date
-        params[:mandate] = {scheme: scheme, used: used}
         params[:mandate][:signed_at] = mandate_signature_date if mandate_signature_date
         params[:mandate][:reference] = mandate_ref if mandate_ref
+      else
+        params[:mandate][:signature_type] = signature_type
+        params[:mandate][:phone_number] = phone_number if phone_number        
       end
       params[:bank_name] = bank_name if bank_name
       BankAccount.create( params, {:customer_id => id} )
