@@ -4,7 +4,7 @@ module Besepa
     
     include Besepa::ApiCalls::List
         
-    FIELDS = [:id, :signed_at, :status, :description, :signature_type, :mandate_type, :reference, :url, :used]
+    FIELDS = [:id, :signed_at, :status, :description, :signature_type, :mandate_type, :reference, :url, :used, :phone_number, :scheme, :signature_url]
     
     FIELDS.each do |f|
       attr_accessor f
