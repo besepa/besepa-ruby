@@ -15,7 +15,7 @@ module Besepa
       attr_accessor f
     end
 
-    attr_accessor :debtor_bank_account, :creditor_bank_account, :customer
+    attr_accessor :debtor_bank_account, :creditor_bank_account, :customer, :remittance, :subscription
 
     def to_hash
       values = {}
@@ -25,6 +25,8 @@ module Besepa
       values[:debtor_bank_account] = debtor_bank_account.to_hash if debtor_bank_account
       values[:creditor_bank_account] = creditor_bank_account.to_hash if creditor_bank_account
       values[:customer] = customer.to_hash if customer
+      values[:remittance] = remittance.to_hash if remittance
+      values[:subscription] = subscription.to_hash if subscription
       values
     end
 
@@ -51,8 +53,10 @@ module Besepa
           self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
         end
         self.debtor_bank_account = Besepa::BankAccount.new(attrs['debtor_bank_account']) if attrs['debtor_bank_account']
-        self.creditor_bank_account = Besepa::BankAccount.new(attrs['creditor_bank_account']) if attrs['creditor_bank_account']
+        self.creditor_bank_account = Besepa::BusinessAccount.new(attrs['creditor_bank_account']) if attrs['creditor_bank_account']
         self.customer = Besepa::Customer.new(attrs['customer']) if attrs['customer']
+        self.remittance = Besepa::Remittance.new(attrs['remittance']) if attrs['remittance']
+        self.subscription = Besepa::Subscription.new(attrs['subscription']) if attrs['subscription']
         process_activities(attrs)
         self
       end
