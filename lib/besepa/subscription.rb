@@ -6,7 +6,8 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Destroy
         
-    FIELDS = [:id, :reference, :status, :metadata]
+    FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at]  
+    
     
     FIELDS.each do |f|
       attr_accessor f
