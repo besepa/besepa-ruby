@@ -100,7 +100,7 @@ bank_name is optional.
 **Create a debit for a customer**
 
 ```ruby
-Besepa::Customer.new( id: customer_id  ).add_debit(mandate_id, reference, description, amount, collect_at, creditor_account_id, metadata)
+Besepa::Customer.new( id: customer_id  ).add_debit(bank_account_id, reference, description, amount, collect_at, creditor_account_id, metadata)
 ```
 
 Amount is with two decimals, without separation character (1000 == 10.00)
