@@ -13,7 +13,7 @@ module Besepa
       # @return [Faraday::Connection]
       def connection(options={})
         options = options.merge(Besepa.options)
-        @connection ||= Faraday.new ( options[:endpoint] ) do |conn|
+        Faraday.new ( options[:endpoint] ) do |conn|
           conn.request :json
           conn.response :json, :content_type => /\bjson$/
           conn.authorization( 'Bearer', options[:api_key])
