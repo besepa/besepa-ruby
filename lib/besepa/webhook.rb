@@ -6,7 +6,7 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Destroy
         
-    FIELDS = [:id, :url, :status, :push_count, :ok_count, :success_rate]  
+    FIELDS = [:id, :url, :status, :push_count, :ok_count, :success_rate, :created_at]  
     
     FIELDS.each do |f|
       attr_accessor f

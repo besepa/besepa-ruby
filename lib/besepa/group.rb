@@ -7,7 +7,7 @@ module Besepa
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
         
-    FIELDS = [:id, :name, :reference]
+    FIELDS = [:id, :name, :reference, :created_at]
     
     FIELDS.each do |f|
       attr_accessor f

@@ -9,7 +9,7 @@ module Besepa
         
     FIELDS = [:id, :name, :amount, :currency, :reference,
               :recurrent, :max_charges, :periodicity,
-              :status]
+              :status, :created_at]
     
     FIELDS.each do |f|
       attr_accessor f

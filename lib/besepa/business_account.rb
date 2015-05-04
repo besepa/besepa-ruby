@@ -7,7 +7,7 @@ module Besepa
     include Besepa::ApiCalls::Update
 #    include Besepa::ApiCalls::Destroy
             
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix]  
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at]  
     
     FIELDS.each do |f|
       attr_accessor f
