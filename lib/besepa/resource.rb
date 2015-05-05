@@ -84,11 +84,6 @@ module Besepa
           end
         end
       end
-      
-      # def api_path(filters={})
-      #   self.class.api_path
-      # end
-
 
   end
     
