@@ -6,7 +6,7 @@ module Besepa
         
     FIELDS = [:id, :signed_at, :status, :description, :signature_type, 
               :mandate_type, :reference, :url, :used, :phone_number, :scheme,
-              :signature_url, :download_url, :created_at]
+              :signature_url, :download_url, :created_at, :redirect_after_signature]
     
     FIELDS.each do |f|
       attr_accessor f

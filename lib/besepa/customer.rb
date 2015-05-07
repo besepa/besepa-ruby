@@ -97,7 +97,7 @@ module Besepa
     # @param phone_number Phone number where the signature SMS will be sent in case signature_type==sms is used.
     #
     # @return new created Besepa::BankAccount
-    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false, signature_type='checkbox', phone_number=nil)
+    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false, signature_type='checkbox', phone_number=nil, redirect_after_signature=nil)
       params = {:iban => iban, :bic => bic }
       params[:mandate] = {scheme: scheme, used: used}
       if mandate_signature_date
@@ -108,6 +108,7 @@ module Besepa
         params[:mandate][:phone_number] = phone_number if phone_number        
       end
       params[:bank_name] = bank_name if bank_name
+      params[:mandate][:redirect_after_signature] = redirect_after_signature if redirect_after_signature
       BankAccount.create( params, {:customer_id => id} )
     end
     
