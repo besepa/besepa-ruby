@@ -8,7 +8,7 @@ module Besepa
     include Besepa::ApiCalls::Destroy
         
     FIELDS = [:id, :name, :amount, :currency, :reference,
-              :recurrent, :max_charges, :periodicity,
+              :recurrent, :max_charges, :periodicity, :period_count,
               :status, :created_at]
     
     FIELDS.each do |f|
