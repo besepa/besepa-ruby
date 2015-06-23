@@ -25,6 +25,25 @@ module Besepa
       self
     end
     
+    def replace(iban, bic, bank_name=nil, signature_type=nil, phone_number=nil, redirect_after_signature=nil)
+      payload = {}
+      payload[self.class.klass_name] = {
+        iban: iban,
+        bic: bic,
+        bank_name: bank_name,
+      }
+      if !signature_type.nil?
+        payload[self.class.klass_name][:mandate] = {
+          signature_type: signature_type,
+          phone_number: phone_number,
+          redirect_after_signature: redirect_after_signature,
+        }
+      end
+      response = post "/#{api_path({customer_id: customer_id})}/replace", payload
+      process_attributes(response['response'])
+      self
+    end
+    
     def generate_signature_request
       response = put "/#{api_path({customer_id: customer_id})}/generate_signature_request"
       process_attributes(response['response'])
