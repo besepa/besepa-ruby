@@ -7,7 +7,7 @@ module Besepa
     include Besepa::ApiCalls::Update
 #    include Besepa::ApiCalls::Destroy
             
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at]  
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization]  
     
     FIELDS.each do |f|
       attr_accessor f
@@ -19,6 +19,12 @@ module Besepa
 
     def set_as_default
       response = put "/#{api_path}/set_as_default"
+      process_attributes(response['response'])
+      self
+    end
+    
+    def activation_request
+      response = put "/#{api_path}/activation_request"
       process_attributes(response['response'])
       self
     end
