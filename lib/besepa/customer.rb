@@ -126,7 +126,7 @@ module Besepa
     def add_debit(debtor_bank_account_id, reference, description, amount, collect_at, creditor_account_id=nil, metadata=nil)
       params = {:reference => reference, :description => description, :debtor_bank_account_id => debtor_bank_account_id,
                 :amount => amount, :collect_at => collect_at}
-      params[:creditor_account_id] = creditor_account_id if creditor_account_id
+      params[:creditor_bank_account_id] = creditor_account_id if creditor_account_id
       params[:metadata] = metadata if metadata
       Debit.create( params, {:customer_id => id} )
     end
