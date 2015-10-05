@@ -10,7 +10,7 @@ module Besepa
         h.delete(:status) 
         h.delete(:id)
         #remove all nil values. Not updated.
-        h.delete_if {|key, value| value.nil? }
+        h.delete_if {|key, value| value.nil? unless allowed_nils.include?(key)}
         payload = {}
         payload[self.class.klass_name] = h
         response = put "/#{self.class.api_path(filters)}/#{id}", payload

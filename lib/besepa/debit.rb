@@ -9,7 +9,10 @@ module Besepa
         
     FIELDS = [:id, :reference, :amount, :currency, :status, 
               :collect_at, :sent_at, :description, :metadata, 
-              :error_code, :platform_error_code, :created_at, :rejected_at]
+              :error_code, :platform_error_code, :created_at, :rejected_at,
+              :debtor_bank_account_id, :creditor_bank_account_id]
+              
+    ALLOWED_NILS = [:collect_at]
     
     FIELDS.each do |f|
       attr_accessor f
@@ -28,6 +31,10 @@ module Besepa
       values[:remittance] = remittance.to_hash if remittance
       values[:subscription] = subscription.to_hash if subscription
       values
+    end
+    
+    def allowed_nils
+      ALLOWED_NILS
     end
 
     protected 

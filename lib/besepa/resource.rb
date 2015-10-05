@@ -10,6 +10,8 @@ module Besepa
       
      include Besepa::Utils::Connection
      include Besepa::Utils::Request
+     
+     ALLOWED_NILS = []
       
       def api_path(filters={})
         "#{klass_name}s"
@@ -61,6 +63,10 @@ module Besepa
     
     def klass_name
       self.class.name.split('::')[-1].downcase
+    end
+    
+    def allowed_nils
+      []
     end
     
     protected 
