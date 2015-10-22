@@ -6,7 +6,7 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Destroy
         
-    FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at, :created_at]  
+    FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at, :created_at, :setup_fee]  
     
     
     FIELDS.each do |f|
