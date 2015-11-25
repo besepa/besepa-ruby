@@ -121,38 +121,6 @@ module Besepa
       BankAccount.create( params, {:customer_id => id} )
     end
     
-    # Adds a bank account to this customer.
-    # IBAN and BIC are the only mandatory fields. If you already have the mandate signed, you can pass mandate 
-    # detail's and account will be activated by default. Otherwise BankAccount will be marked as inactive (not usable 
-    # for creating debits or subscriptions) until mandate is signed. BankAccount includes mandate's info, including
-    # signature URL.
-    #
-    # @param iban
-    # @param bic
-    # @param bank_name
-    # @param scheme CORE|COR1|B2B. Default: CORE
-    # @param mandate_signature_date Date in which this mandate was signed if already signed (Format: YYYY-MM-DD) 
-    # @param mandate_ref Mandate's reference. If none, Besepa will create one.
-    # @param used Says if this mandate has already been used or not.
-    # @param signature_type Signature to be used: checkbox|sms|biometric
-    # @param phone_number Phone number where the signature SMS will be sent in case signature_type==sms is used.
-    #
-    # @return new created Besepa::BankAccount
-    def add_bank_account(iban, bic, bank_name=nil, scheme='CORE', mandate_signature_date=nil, mandate_ref=nil, used=false, signature_type='checkbox', phone_number=nil, redirect_after_signature=nil)
-      params = {:iban => iban, :bic => bic }
-      params[:mandate] = {scheme: scheme, used: used}
-      if mandate_signature_date
-        params[:mandate][:signed_at] = mandate_signature_date if mandate_signature_date
-        params[:mandate][:reference] = mandate_ref if mandate_ref
-      else
-        params[:mandate][:signature_type] = signature_type
-        params[:mandate][:phone_number] = phone_number if phone_number        
-      end
-      params[:bank_name] = bank_name if bank_name
-      params[:mandate][:redirect_after_signature] = redirect_after_signature if redirect_after_signature
-      BankAccount.create( params, {:customer_id => id} )
-    end
-    
     # Generates a direct debit that will be charged to this customer.
     # 
     # @param debtor_bank_account_id Customer's BankAccount code this Debit shouyd be charged to.
