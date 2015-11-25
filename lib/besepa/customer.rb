@@ -89,6 +89,47 @@ module Besepa
     # @param iban
     # @param bic
     # @param bank_name
+    # @param mandate_options options to configure mandate
+    #        - scheme: CORE|COR1|B2B. Default: CORE
+    #        - signature_date: Date in which this mandate was signed if already signed (Format: YYYY-MM-DD) 
+    #        - reference: Mandate's reference. If none, Besepa will create one.
+    #        - used: Says if this mandate has already been used or not.
+    #        - signature_type: Signature to be used: checkbox|sms|biometric
+    #        - phone_number: Phone number where the signature SMS will be sent in case signature_type==sms is used.
+    #        - type: ONETIME | RECURRENT. Default: RECURRENT
+    #        - redirect_after_signature: URL the user should be redirect to after mandate is signed. Default: Besepa's thank you page
+    #
+    # @return new created Besepa::BankAccount
+    def add_bank_account(iban, bic=nil, bank_name=nil, mandate_options={})
+      params = {:iban => iban }
+      params[:bank_name] = bank_name if bank_name
+      params[:bic] = bic if bic
+      
+      params[:mandate] = {      scheme: (mandate_options[:scheme] || "CORE"), 
+                                  used:  (mandate_options[:used] || false),
+                          mandate_type: (mandate_options[:type] || "RECURRENT") }
+                          
+      if mandate_options[:signature_date]
+        params[:mandate][:signed_at] = mandate_options[:signature_date]
+        params[:mandate][:reference] = mandate_options[:reference] if mandate_options[:reference]
+      else
+        params[:mandate][:signature_type] = mandate_options[:signature_type] || 'checkbox'
+        params[:mandate][:phone_number] = mandate_options[:phone_number] if mandate_options[:phone_number]        
+      end
+      params[:mandate][:redirect_after_signature] = mandate_options[:redirect_after_signature] if mandate_options[:redirect_after_signature]
+      
+      BankAccount.create( params, {:customer_id => id} )
+    end
+    
+    # Adds a bank account to this customer.
+    # IBAN and BIC are the only mandatory fields. If you already have the mandate signed, you can pass mandate 
+    # detail's and account will be activated by default. Otherwise BankAccount will be marked as inactive (not usable 
+    # for creating debits or subscriptions) until mandate is signed. BankAccount includes mandate's info, including
+    # signature URL.
+    #
+    # @param iban
+    # @param bic
+    # @param bank_name
     # @param scheme CORE|COR1|B2B. Default: CORE
     # @param mandate_signature_date Date in which this mandate was signed if already signed (Format: YYYY-MM-DD) 
     # @param mandate_ref Mandate's reference. If none, Besepa will create one.
