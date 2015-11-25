@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    besepa (0.4.0)
+    besepa (0.4.1)
       faraday (~> 0.9)
       faraday_middleware (~> 0.9)
 
