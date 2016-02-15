@@ -13,6 +13,10 @@ module Besepa
       attr_accessor f
     end    
 
+    def customers
+      Customer.search({ field: :group_id, value: id})
+    end
+
     protected
     
       def self.api_path(filters={})
