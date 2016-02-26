@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    besepa (0.4.1)
+    besepa (0.5.0)
       faraday (~> 0.9)
       faraday_middleware (~> 0.9)
 
@@ -44,3 +44,6 @@ DEPENDENCIES
   rake
   rspec (~> 3.1)
   webmock (~> 1.20)
+
+BUNDLED WITH
+   1.11.2
