@@ -1,7 +1,7 @@
 module Besepa
-  
+
   module Utils
-    
+
     # Defines HTTP request methods
     module Request
 
@@ -52,9 +52,6 @@ module Besepa
           body
         end
       end
-      
     end
-    
   end
-  
 end

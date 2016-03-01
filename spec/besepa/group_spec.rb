@@ -10,9 +10,13 @@ describe Besepa::Group do
 
     it 'returns a list of customers' do
       customers = @group.customers
-      expect(customers).to be_an Array
+      expect(customers).to respond_to(:each)
       expect(customers.first).to be_an Besepa::Customer
       expect(customers.size).to eq(1)
+      expect(customers.per_page).to eq(50)
+      expect(customers.current_page).to eq(1)
+      expect(customers.total).to eq(1)
+      expect(customers.pages).to eq(1)
     end
   end
 end
