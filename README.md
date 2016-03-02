@@ -6,7 +6,7 @@ A Ruby gem to Besepa.com's API.
 
 Add this line to your application's Gemfile:
 
-    gem 'besepa-ruby'
+    gem 'besepa'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install besepa-ruby
+    $ gem install besepa
     
 ## Documentation
 
