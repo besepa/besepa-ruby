@@ -6,7 +6,7 @@ A Ruby gem to Besepa.com's API.
 
 Add this line to your application's Gemfile:
 
-    gem 'besepa-ruby'
+    gem 'besepa'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install besepa-ruby
+    $ gem install besepa
     
 ## Documentation
 
@@ -22,7 +22,6 @@ http://apidocs.besepa.com
 
 
 ## Configuration
-
 ```ruby
 Besepa.configure do |config|
   config.api_key = API_KEY 
@@ -35,7 +34,19 @@ By default, this gem points to Besepa's sandbox (https://sandbox.besepa.com). If
 Remeber that API_KEY changes from one environment to the other.
 
 ## Usage
+**Add new customer
 
+```ruby
+Besepa::Customer.new(id: customer_id)
+#=> <Besepa::Customer:0x0000 @id=nil, @name=nil, @taxid=nil, @reference=nil, @contact_name=nil, @contact_email=nil, @contact_phone=nil, @contact_language=nil, @address_street=nil, @address_city=nil, @address_postalcode=nil, @address_state=nil, @address_country=nil, @status=nil, @created_at=nil>
+```
+Create empty object but not save it.
+
+or
+```ruby
+Besepa::Customer.create(name: 'name')
+
+```
 **Get all customers**
 
 ```ruby
@@ -71,22 +82,11 @@ Note all subscriptions, upcoming debits and mandates for this customer will be c
 ```ruby
 Besepa::Customer.find( customer_id  ).bank_accounts
 ```
+The result is a array.
 
 In case you don't have a Customer yet, just create one Customer object with it's id.
 ```ruby
 Besepa::Customer.new( id: customer_id  ).bank_accounts
-```
-
-**Get customer's subscriptions**
-
-```ruby
-Besepa::Customer.new( id: customer_id  ).subscriptions
-```
-
-**Get customer's debits**
-
-```ruby
-Besepa::Customer.new( id: customer_id  ).debits
 ```
 
 **Add a bank account to a customer**
@@ -97,14 +97,51 @@ Besepa::Customer.new( id: customer_id  ).add_bank_account(iban, bic, bank_name)
 ```
 bank_name is optional.
 
+**Update bank account**
+
+```ruby
+b = Besepa::Customer.find(customer_id).detect{|b|  b.id == bank_account_id }
+b.replace(iban, bic, bank_name)
+```
+
+**Get customer's debits**
+
+```ruby
+Besepa::Customer.new( id: customer_id  ).debits
+```
+
 **Create a debit for a customer**
 
 ```ruby
 Besepa::Customer.new( id: customer_id  ).add_debit(bank_account_id, reference, description, amount, collect_at, creditor_account_id, metadata)
 ```
-
 Amount is with two decimals, without separation character (1000 == 10.00)
 Metadata can be a hash that we will store associated to this debit. creditor_account_id is optional, if none passed, we will use account's default one. 
+**Get customer's subscriptions**
+
+```ruby
+Besepa::Customer.new( id: customer_id  ).subscriptions
+```
+
+**Add customer'subscription**
+```ruby
+Besepa::Customer.find(customer_id).add_subscription(starts_at, product_code, bank_account_code)
+
+**Get customer's groups**
+List of groups this customer belongs to
+```ruby
+Besepa::Customer.find(customer_id).groups
+```
+
+**Add customer to group**
+```ruby
+Besepa::Customer.find(customer_id).add_to_group(group_id)
+```
+
+**Remove customer from the group**
+```ruby
+Besepa::Customer.find(customer_id).remove_from_group(group_id)
+```
 
 
 
