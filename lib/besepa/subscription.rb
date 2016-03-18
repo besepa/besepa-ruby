@@ -1,20 +1,18 @@
 module Besepa
-
   class Subscription < Besepa::Resource
-    
+
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Destroy
-        
-    FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at, :created_at, :setup_fee]  
-    
-    
+
+    FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at, :created_at, :setup_fee, :customer_code]
+
     FIELDS.each do |f|
       attr_accessor f
     end
-    
-    attr_accessor :debtor_bank_account, :product, :customer    
-    
+
+    attr_accessor :debtor_bank_account, :product, :customer
+
     def to_hash
       values = {}
       self.class::FIELDS.each do |key|
@@ -25,15 +23,20 @@ module Besepa
       values[:customer] = customer.to_hash if customer
       values
     end
-    
+
     def self.api_path(filters={})
-      "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/subscriptions"
+      customer_id = filters[:customer_id]
+      if customer_id
+        "#{Customer.api_path}/#{CGI.escape(customer_id)}/subscriptions"
+      else
+        "/subscriptions"
+      end
     end
 
     def api_path(filters={})
-      "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/subscriptions/#{CGI.escape(id)}"
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
     end
-    
+
     def process_attributes(attrs)
       self.class::FIELDS.each do |key|
         self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
@@ -44,7 +47,5 @@ module Besepa
       process_activities(attrs)
       self
     end
-
-
   end
 end
