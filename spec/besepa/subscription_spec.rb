@@ -32,16 +32,16 @@ describe Besepa::Subscription do
 
   describe '#find' do
     it 'without customer' do
-      stub_get('/subscription/1?page=1').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
+      stub_get('/subscriptions/1').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
 
       subscription = Besepa::Subscription.find('1')
       expect(subscription).to be_an Besepa::Subscription
     end
 
     it 'with customer' do
-      stub_get('/customers/bar/subscription/1?page=1').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
+      stub_get('/customers/bar/subscriptions/1').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
 
-      subscription = Besepa::Subscription.find('1')
+      subscription = Besepa::Subscription.find('1', customer_id: 'bar')
       expect(subscription).to be_an Besepa::Subscription
     end
   end
