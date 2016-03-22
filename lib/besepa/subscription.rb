@@ -2,6 +2,7 @@ module Besepa
   class Subscription < Besepa::Resource
 
     include Besepa::ApiCalls::List
+    include Besepa::ApiCalls::Search
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Destroy
 
