@@ -34,7 +34,8 @@ By default, this gem points to Besepa's sandbox (https://sandbox.besepa.com). If
 Remeber that API_KEY changes from one environment to the other.
 
 ## Usage
-**Add new customer
+
+**Add new customer**
 
 ```ruby
 Besepa::Customer.new(id: customer_id)
