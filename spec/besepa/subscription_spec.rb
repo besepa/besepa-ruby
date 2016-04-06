@@ -45,4 +45,23 @@ describe Besepa::Subscription do
       expect(subscription).to be_an Besepa::Subscription
     end
   end
+
+  describe '#search' do
+    before do
+      stub_get('/subscriptions/search?field=product_id&value=foo&page=1').to_return(body: fixture('collection.json'), headers: {content_type: 'application/json; charset=utf-8'})
+    end
+
+    it 'returs a list of customers' do
+      customers = Besepa::Subscription.search(field: 'product_id', value: 'foo', page: 1)
+      expect(customers).to respond_to(:each)
+      expect(customers.first).to be_an Besepa::Subscription
+      expect(customers.size).to eq(1)
+      expect(customers.per_page).to eq(50)
+      expect(customers.current_page).to eq(1)
+      expect(customers.total).to eq(1)
+      expect(customers.pages).to eq(1)
+    end
+  end
+
+
 end
