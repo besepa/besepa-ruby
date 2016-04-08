@@ -4,9 +4,7 @@ module Besepa
       module ClassMethods
         def all(filters={})
           path = api_path(filters)
-
           response = get(path, query_params(filters))
-
           Besepa::Collection.new(response, self)
         end
 
