@@ -18,6 +18,12 @@ module Besepa
     end
 
     protected
+
+      def self.query_params(filters = {})
+        filters = filters.dup
+        filters.delete(:customer_id)
+        filters
+      end
     
       def self.api_path(filters={})
         if filters[:customer_id]

@@ -60,6 +60,12 @@ module Besepa
     end
     
     protected
+
+      def self.query_params(filters = {})
+        filters = filters.dup
+        filters.delete(:customer_id)
+        filters
+      end
     
       def self.api_path(filters={})
         "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"

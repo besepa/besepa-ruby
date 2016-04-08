@@ -12,6 +12,10 @@ module Besepa
      include Besepa::Utils::Request
      
      ALLOWED_NILS = []
+
+     def query_params(filters)
+       filters
+     end
       
       def api_path(filters={})
         "/#{klass_name}s"

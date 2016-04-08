@@ -47,6 +47,13 @@ module Besepa
         end
       end
 
+      def self.query_params(filters = {})
+        filters = filters.dup
+        filters.delete(:group_id) if filters[:customer_id]
+        filters.delete(:customer_id)
+        filters
+      end
+
       def api_path(filters={})
         if filters[:customer_id]
         "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits/#{CGI.escape(id)}"
