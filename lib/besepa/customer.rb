@@ -51,7 +51,7 @@ module Besepa
     #
     # @return true if user is now a member of the group
     def add_to_group(group_id)
-      response = post "/#{self.class.api_path}/#{id}/memberships/#{group_id}"
+      response = post "#{self.class.api_path}/#{id}/memberships/#{group_id}"
       response['response'].select{|c| c['id'] == group_id}.any?
     end
     
@@ -61,7 +61,7 @@ module Besepa
     #
     # @return true if user is no longer a member of the group
     def remove_from_group(group_id)
-      response = delete "/#{self.class.api_path}/#{id}/memberships/#{group_id}"
+      response = delete "#{self.class.api_path}/#{id}/memberships/#{group_id}"
       response['response'].select{|c| c['id'] == group_id}.empty?
     end
     

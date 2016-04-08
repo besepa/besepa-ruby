@@ -13,7 +13,7 @@ module Besepa
     end    
     
     def api_path
-      "/customers/#{self.customer_id}/#{self.class.api_path}"
+      "/customers/#{self.customer_id}#{self.class.api_path}"
     end
 
   end

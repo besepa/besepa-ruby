@@ -14,7 +14,7 @@ module Besepa
      ALLOWED_NILS = []
       
       def api_path(filters={})
-        "#{klass_name}s"
+        "/#{klass_name}s"
       end
       
       def klass_name

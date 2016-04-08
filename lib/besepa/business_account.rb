@@ -18,13 +18,13 @@ module Besepa
     end
 
     def set_as_default
-      response = put "/#{api_path}/set_as_default"
+      response = put "#{api_path}/set_as_default"
       process_attributes(response['response'])
       self
     end
     
     def activation_request
-      response = put "/#{api_path}/activation_request"
+      response = put "#{api_path}/activation_request"
       process_attributes(response['response'])
       self
     end
