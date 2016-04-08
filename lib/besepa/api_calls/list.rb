@@ -3,15 +3,13 @@ module Besepa
     module List
       module ClassMethods
         def all(filters={})
-          path = "/#{api_path(filters)}"
-          params = filters.select{|x| [:page, :field, :value].include?(x)}
-          response = get(path, params)
-
+          path = api_path(filters)
+          response = get(path, query_params(filters))
           Besepa::Collection.new(response, self)
         end
 
         def find(id, filters={})
-          response = get "/#{api_path(filters)}/#{id}"
+          response = get "#{api_path(filters)}/#{id}"
           c = self.new(response['response'])
           c
         end
@@ -20,7 +18,6 @@ module Besepa
       def self.included(base)
         base.extend(ClassMethods)
       end
-
     end
   end
 end

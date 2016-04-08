@@ -34,6 +34,12 @@ module Besepa
       end
     end
 
+    def self.query_params(filters = {})
+      filters = filters.dup
+      filters.delete(:customer_id)
+      filters
+    end
+
     def api_path(filters={})
       "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
     end
