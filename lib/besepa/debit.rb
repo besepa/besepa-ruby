@@ -38,27 +38,23 @@ module Besepa
 
     protected
 
-    def self.api_path(filters={})
-      if filters[:customer_id]
-        "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits"
-      else
-        "#{Group.api_path}/#{CGI.escape(filters[:group_id])}/debits"
-      end
-    end
-
     def self.query_params(filters = {})
       filters = filters.dup
-      filters.delete(:group_id) if filters[:customer_id]
       filters.delete(:customer_id)
       filters
     end
 
-    def api_path(filters={})
-      if filters[:customer_id]
-      "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/debits/#{CGI.escape(id)}"
+    def self.api_path(filters={})
+      customer_id = filters[:customer_id]
+      if customer_id
+        "#{Customer.api_path}/#{CGI.escape(customer_id)}/debits"
       else
-        "#{Group.api_path}/#{CGI.escape(filters[:group_id])}/debits/#{CGI.escape(id)}"
+        '/debits'
       end
+    end
+
+    def api_path(filters={})
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
     end
 
     def process_attributes(attrs)
