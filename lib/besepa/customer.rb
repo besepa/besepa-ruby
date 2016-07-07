@@ -9,8 +9,8 @@ module Besepa
 
     FIELDS = [:id, :name, :taxid, :reference,
               :contact_name, :contact_email, :contact_phone, :contact_language,
-              :address_street, :address_city, :address_postalcode, :address_state, 
-              :address_country, :group_ids, :status, :created_at]
+              :address_street, :address_city, :address_postalcode, :address_state,
+              :address_country, :group_ids, :status, :created_at, :stats]
 
     FIELDS.each do |f|
       attr_accessor f
