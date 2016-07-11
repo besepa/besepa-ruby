@@ -5,7 +5,7 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
 
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization]
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization, :stats]
 
     FIELDS.each do |f|
       attr_accessor f
