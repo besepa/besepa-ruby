@@ -2,6 +2,7 @@ module Besepa
   class Debit < Besepa::Resource
 
     include Besepa::ApiCalls::List
+    include Besepa::ApiCalls::Search
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
