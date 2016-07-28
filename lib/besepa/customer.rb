@@ -107,7 +107,10 @@ module Besepa
 
       params[:mandate] = {      scheme: (mandate_options[:scheme] || "CORE"),
                                   used:  (mandate_options[:used] || false),
-                          mandate_type: (mandate_options[:type] || "RECURRENT") }
+                          mandate_type: (mandate_options[:type] || "RECURRENT")
+      }
+
+      params[:mandate][:product_id] = mandate_options[:product_id] if mandate_options[:product_id]
 
       if mandate_options[:signature_date]
         params[:mandate][:signed_at] = mandate_options[:signature_date]
