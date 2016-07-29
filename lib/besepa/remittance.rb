@@ -4,7 +4,7 @@ module Besepa
 
     include Besepa::ApiCalls::List
 
-    FIELDS = [:id, :collect_at, :send_at, :sent_at, :status, :scheme, :created_at, :debits_count]
+    FIELDS = [:id, :collect_at, :send_at, :sent_at, :status, :scheme, :created_at, :debits_count, :debits_amount]
 
     attr_accessor :bank_account
 
