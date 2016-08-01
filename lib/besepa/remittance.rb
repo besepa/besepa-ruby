@@ -16,6 +16,16 @@ module Besepa
       "/remittances"
     end
 
+    def api_path(filters={})
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
+    end
+
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
+    end
+
+
     protected
 
       def process_attributes(attrs)
