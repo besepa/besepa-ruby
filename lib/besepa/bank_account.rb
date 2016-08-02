@@ -7,13 +7,13 @@ module Besepa
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
 
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :customer_id, :created_at, :stats]
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :created_at, :stats, :customer_id]
 
     FIELDS.each do |f|
       attr_accessor f
     end
 
-    attr_accessor :mandate
+    attr_accessor :mandate, :customer
 
     def self.klass_name
       "bank_account"
@@ -56,6 +56,7 @@ module Besepa
         values[key] = self.send("#{key.to_s}")
       end
       values[:mandate] = mandate.to_hash if mandate
+      values[:customer] = customer.to_hash if customer
       values
     end
 
@@ -88,6 +89,7 @@ module Besepa
         self.send("#{key.to_s}=", attrs[key.to_s] || attrs[key.to_sym])
       end
       self.mandate = Besepa::Mandate.new(attrs['mandate']) if attrs['mandate']
+      self.customer = Besepa::Customer.new(attrs['customer']) if attrs['customer']
       process_activities(attrs)
       self
     end
