@@ -2,6 +2,7 @@ module Besepa
   class BankAccount < Besepa::Resource
 
     include Besepa::ApiCalls::List
+    include Besepa::ApiCalls::Search
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
@@ -66,12 +67,20 @@ module Besepa
       filters
     end
 
+
+
     def self.api_path(filters={})
+      customer_id = filters[:customer_id]
+
+      if customer_id
       "#{Customer.api_path}/#{CGI.escape(filters[:customer_id])}/bank_accounts"
+      else
+        '/bank_accounts'
+      end
     end
 
     def api_path(filters={})
-      "#{Customer.api_path}/#{CGI.escape(filters[:customer_id]||customer_id)}/bank_accounts/#{CGI.escape(id)}"
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
     end
 
     def process_attributes(attrs)
