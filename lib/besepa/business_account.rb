@@ -21,6 +21,11 @@ module Besepa
       self
     end
 
+    def self.default
+      response = get "#{api_path}/default"
+      self.new(response['response'])
+    end
+
     def activation_request
       response = put "#{api_path}/activation_request"
       process_attributes(response['response'])
