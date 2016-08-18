@@ -10,7 +10,7 @@ module Besepa
     FIELDS = [:id, :name, :taxid, :reference,
               :contact_name, :contact_email, :contact_phone, :contact_language,
               :address_street, :address_city, :address_postalcode, :address_state,
-              :address_country, :group_ids, :status, :created_at, :stats]
+              :address_country, :group_ids, :status, :created_at]
 
     FIELDS.each do |f|
       attr_accessor f
@@ -141,6 +141,15 @@ module Besepa
       params[:creditor_bank_account_id] = creditor_account_id if creditor_account_id
       params[:metadata] = metadata if metadata
       Debit.create( params, {:customer_id => id} )
+    end
+
+    def api_path(filters = {})
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
+    end
+
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
     end
   end
 end
