@@ -6,7 +6,7 @@ module Besepa
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
 
-    FIELDS = [:id, :name, :reference, :created_at, :stats]
+    FIELDS = [:id, :name, :reference, :created_at]
 
     FIELDS.each do |f|
       attr_accessor f
@@ -14,6 +14,15 @@ module Besepa
 
     def customers
       Customer.search({ field: :group_id, value: id})
+    end
+
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
+    end
+
+    def api_path(filters = {})
+      "#{self.class.api_path(filters)}/#{CGI.escape(id)}"
     end
 
     protected
