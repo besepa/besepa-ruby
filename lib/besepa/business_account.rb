@@ -5,7 +5,7 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
 
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization, :stats]
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization]
 
     FIELDS.each do |f|
       attr_accessor f
@@ -30,6 +30,11 @@ module Besepa
       response = put "#{api_path}/activation_request"
       process_attributes(response['response'])
       self
+    end
+
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
     end
 
     protected
