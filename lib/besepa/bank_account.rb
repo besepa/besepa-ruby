@@ -7,7 +7,7 @@ module Besepa
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
 
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :created_at, :stats, :customer_id]
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :created_at, :customer_id]
 
     FIELDS.each do |f|
       attr_accessor f
@@ -60,6 +60,11 @@ module Besepa
       values
     end
 
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
+    end
+
     protected
 
     def self.query_params(filters = {})
@@ -67,8 +72,6 @@ module Besepa
       filters.delete(:customer_id)
       filters
     end
-
-
 
     def self.api_path(filters={})
       customer_id = filters[:customer_id]
