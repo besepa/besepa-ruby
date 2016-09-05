@@ -2,6 +2,7 @@ module Besepa
   class Payment < Besepa::Resource
 
     include Besepa::ApiCalls::List
+    include Besepa::ApiCalls::Search
 
     FIELDS = [:id, :reference, :amount, :currency, :status, :send_at, :sent_at, :description, :metadata, :created_at]
 
