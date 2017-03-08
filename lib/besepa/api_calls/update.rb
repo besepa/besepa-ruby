@@ -1,15 +1,12 @@
 module Besepa
-    
   module ApiCalls
-    
     module Update
-      
       def save(filters={})
         h = self.to_hash
-        #id and status should not be send back to the server
-        h.delete(:status) 
+        # id and status should not be send back to the server
+        h.delete(:status)
         h.delete(:id)
-        #remove all nil values. Not updated.
+        # remove all nil values. Not updated.
         h.delete_if {|key, value| value.nil? unless allowed_nils.include?(key)}
         payload = {}
         payload[self.class.klass_name] = h
@@ -17,7 +14,6 @@ module Besepa
         process_attributes(response['response'])
         self
       end
-      
     end
   end
 end

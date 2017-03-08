@@ -63,5 +63,16 @@ describe Besepa::Subscription do
     end
   end
 
+  describe '#update' do
+    it 'posts resource to API' do
+      stub_get('/subscriptions/res12345').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
+      stub_put('/subscriptions/res12345').to_return(body: fixture('resource.json'), headers: {content_type: 'application/json; charset=utf-8'})
 
+      subscription = Besepa::Subscription.find('res12345')
+
+      subscription.save
+
+      expect(subscription).to be_an Besepa::Subscription
+    end
+  end
 end
