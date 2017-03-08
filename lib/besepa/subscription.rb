@@ -4,6 +4,7 @@ module Besepa
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Search
     include Besepa::ApiCalls::Create
+    include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
 
     FIELDS = [:id, :last_debit, :next_debit, :status, :metadata, :starts_at, :renew_at, :created_at, :setup_fee, :customer_code, :debits_count]
