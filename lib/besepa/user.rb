@@ -1,6 +1,5 @@
 module Besepa
-
-  class Product < Besepa::Resource
+  class User < Besepa::Resource
 
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Search
@@ -8,13 +7,10 @@ module Besepa
     include Besepa::ApiCalls::Update
     include Besepa::ApiCalls::Destroy
 
-    FIELDS = [:id, :name, :amount, :currency, :reference,
-              :recurrent, :max_charges, :periodicity, :period_count,
-              :status, :created_at]
+    FIELDS = [:id, :name, :email, :account_id, :owner, :created_at, :updated_at, :last_sign_in_at, :time_zone, :notify_errors, :notify_mandate_signs]
 
     FIELDS.each do |f|
       attr_accessor f
     end
-
   end
 end

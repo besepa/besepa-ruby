@@ -1,10 +1,10 @@
 module Besepa
-
   class BusinessAccount < Besepa::Resource
-    
+
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
+
 #    include Besepa::ApiCalls::Destroy
             
     FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, 
@@ -12,35 +12,45 @@ module Besepa
               :line_amount, :retention_days, :debit_cost, :rejection_cost,
               :core_future_risk, :core_amount_at_risk, :b2b_future_risk, :b2b_amount_at_risk]  
     
+
     FIELDS.each do |f|
       attr_accessor f
-    end   
-        
+    end
+
     def self.klass_name
       "bank_account"
     end
 
     def set_as_default
-      response = put "/#{api_path}/set_as_default"
+      response = put "#{api_path}/set_as_default"
       process_attributes(response['response'])
       self
     end
-    
+
+    def self.default
+      response = get "#{api_path}/default"
+      self.new(response['response'])
+    end
+
     def activation_request
-      response = put "/#{api_path}/activation_request"
+      response = put "#{api_path}/activation_request"
       process_attributes(response['response'])
       self
     end
-    
-    protected 
-    
-      def self.api_path(filters={})
-        "/account/bank_accounts"
-      end
 
-      def api_path(filters={})
-        "/account/bank_accounts/#{CGI.escape(id)}"
-      end
+    def stats
+      response = get "#{api_path}/stats"
+      response['response']
+    end
 
+    protected
+
+    def self.api_path(filters={})
+      "/account/bank_accounts"
+    end
+
+    def api_path(filters={})
+      "/account/bank_accounts/#{CGI.escape(id)}"
+    end
   end
 end
