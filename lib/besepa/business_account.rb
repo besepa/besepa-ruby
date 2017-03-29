@@ -5,7 +5,6 @@ module Besepa
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
 
-#    include Besepa::ApiCalls::Destroy
             
     FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, 
               :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization,
