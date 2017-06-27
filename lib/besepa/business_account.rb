@@ -4,13 +4,13 @@ module Besepa
     include Besepa::ApiCalls::List
     include Besepa::ApiCalls::Create
     include Besepa::ApiCalls::Update
-
-    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default,
-              :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix,
-              :created_at, :authorization, :line_amount, :retention_days,
-              :debit_cost, :rejection_cost, :core_future_risk,
-              :core_amount_at_risk, :b2b_future_risk, :b2b_amount_at_risk,
+            
+    FIELDS = [:id, :iban, :bic, :bank_name, :status, :default, 
+              :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization,
+              :limit_core, :limit_b2b, :retention_days, :debit_cost, :rejection_cost,
+              :core_future_risk, :core_current_risk, :b2b_future_risk, :b2b_current_risk,
               :financed]
+
 
     FIELDS.each do |f|
       attr_accessor f
