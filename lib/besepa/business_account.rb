@@ -9,6 +9,7 @@ module Besepa
               :core_enabled, :core_suffix, :b2b_enabled, :b2b_suffix, :created_at, :authorization,
               :limit_core, :limit_b2b, :retention_days, :debit_cost, :rejection_cost,
               :core_future_risk, :core_current_risk, :b2b_future_risk, :b2b_current_risk,
+              :rejection_cost, :debit_cost, :retention_days,
               :financed]
 
 
