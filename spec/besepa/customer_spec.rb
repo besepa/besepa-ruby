@@ -24,7 +24,7 @@ describe Besepa::Customer do
       stub_get('/customers/cus12345').to_return(body: fixture('customer.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'returns a a customer' do
+    it 'returns a customer' do
       customer = Besepa::Customer.find('cus12345')
       expect(customer).to be_an Besepa::Customer
       expect(customer.name).to eq("Pancho Villa SLU")
@@ -54,7 +54,7 @@ describe Besepa::Customer do
       stub_put('/customers/cus12345').to_return(body: fixture('customer.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'returns a a customer' do
+    it 'returns a customer' do
       customer = Besepa::Customer.find('cus12345')
       customer.name = customer.name.reverse
       customer = customer.save
@@ -69,7 +69,7 @@ describe Besepa::Customer do
       stub_delete('/customers/cus12345').to_return(body: fixture('customer_removed.json'), headers: {content_type: 'application/json; charset=utf-8'})
     end
 
-    it 'returns a a customer' do
+    it 'returns a customer' do
       customer = Besepa::Customer.find('cus12345')
       customer.name = customer.name.reverse
       customer = customer.destroy
