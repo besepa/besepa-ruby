@@ -1,0 +1,26 @@
+{
+  "response": [
+    {
+      "id": "ban12345",
+      "iban": "ES6012345678050000000001",
+      "bic": "TESTXXX",
+      "bank_name": "Banco Test",
+      "status": "PENDING_MANDATE",
+      "default": true,
+      "created_at": "2016-08-26T10:52:28.000+02:00",
+      "b2b_enabled": true,
+      "b2b_suffix": "001",
+      "core_enabled": true,
+      "core_suffix": "000"
+    }
+  ],
+  "count": 1,
+  "pagination": {
+    "previous": null,
+    "next": null,
+    "current": 1,
+    "per_page": 30,
+    "count": 1,
+    "pages": 1
+  }
+}
