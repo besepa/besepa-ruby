@@ -38,7 +38,7 @@ module Besepa
             request.url(END_POINT_URL_PREFIX + path, params)
           when :post, :put
             request.path = END_POINT_URL_PREFIX + path
-            request.body = params unless params.empty?
+            request.body = params.to_json unless params.empty?
           end
         end
         options[:raw] ? response : handle_response(response)
